@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.AKeyboard" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/kbd_light_bg</item>
+        <item name="android:navigationBarColor">@color/kbd_light_bg</item>
+    </style>
+</resources>
+
