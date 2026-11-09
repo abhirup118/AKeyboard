@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AKeyboard (Gboard Clone)"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#202124" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="No-ML Android Keyboard with Trie Autocomplete, DP Auto-Correction &amp; Room Learning"
+            android:textSize="14sp"
+            android:textColor="#5F6368" />
+
+        <!-- Setup Step 1 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_enable_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="20dp"
+            android:text="Step 1: Enable AKeyboard in Settings"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp"
+            app:backgroundTint="#1A73E8" />
+
+        <!-- Setup Step 2 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_select_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="10dp"
+            android:text="Step 2: Choose AKeyboard as Active IME"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp"
+            app:backgroundTint="#34A853" />
+
+        <!-- Live Typing Playground -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Typing Playground"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#202124" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Try typing 'hel' or typos like 'teh' and 'recive':"
+            android:textSize="13sp"
+            android:textColor="#70757A" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeColor="#1A73E8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_test_typing"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="top|start"
+                android:hint="@string/test_typing_hint"
+                android:inputType="textMultiLine|textCapSentences"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Stats Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:strokeColor="#DADCE0"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#202124" />
+
+                <TextView
+                    android:id="@+id/tv_dictionary_stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Trie Dictionary: Loading 55,000+ words..."
+                    android:textSize="13sp"
+                    android:textColor="#3C4043" />
+
+                <TextView
+                    android:id="@+id/tv_learning_stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Room DB Learned Words: 0"
+                    android:textSize="13sp"
+                    android:textColor="#3C4043" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</ScrollView>
+
