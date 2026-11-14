@@ -56,12 +56,12 @@ The output APK is generated at: `app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Testing
 
-The project contains 22 unit tests covering:
-- Trie insertion, prefix matching, and bounded heap suggestion ranking (`TrieTest`).
-- Dynamic programming distance calculations and branch pruning (`AutoCorrectEngineTest`).
-- Dictionary asset integrity and alphabet coverage (`DictionaryAssetTest`).
-- Repository ranking and Room integration (`SuggestionRepositoryTest`).
-- ViewModel state management and shift transitions (`KeyboardViewModelTest`).
+The project contains 127 automated unit tests covering:
+- Trie insertion, prefix matching, bounded heap suggestion ranking, and concurrency stress testing (`TrieTest`, `DataLayerCornerCasesTest`).
+- Dynamic programming distance calculations, true Damerau transposition, and branch pruning (`AutoCorrectEngineTest`, `DomainCornerCasesTest`).
+- Dictionary asset integrity, loader edge formats, and alphabet coverage (`DictionaryAssetTest`, `DataLayerCornerCasesTest`).
+- Repository ranking, frequency updates, and Room integration (`SuggestionRepositoryTest`, `ViewModelRepositoryCornerCasesTest`).
+- ViewModel state management, shift timing, and layout mode transitions (`KeyboardViewModelTest`, `ViewModelRepositoryCornerCasesTest`).
 
 Run all tests with:
 ```bash

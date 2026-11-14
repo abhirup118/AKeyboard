@@ -33,7 +33,7 @@ class AutoCorrectEngine(
         maxDistance: Int = 2,
         limit: Int = 5
     ): List<String> {
-        if (word.isBlank() || maxDistance < 0) return emptyList()
+        if (word.isBlank() || maxDistance < 0 || limit <= 0) return emptyList()
         val target = word.lowercase().trim()
 
         // If the word itself exists in Trie with frequency > 0, return it first
@@ -55,6 +55,7 @@ class AutoCorrectEngine(
                 letter = char,
                 target = target,
                 prevRow = initialRow,
+                prevPrevRow = null,
                 currentPrefix = char.toString(),
                 maxDistance = maxDistance,
                 results = candidates
@@ -88,6 +89,7 @@ class AutoCorrectEngine(
         letter: Char,
         target: String,
         prevRow: IntArray,
+        prevPrevRow: IntArray? = null,
         currentPrefix: String,
         maxDistance: Int,
         results: MutableList<CorrectionCandidate>
@@ -111,11 +113,10 @@ class AutoCorrectEngine(
 
             // Damerau-Levenshtein transposition check:
             // Handles common typos like "teh" -> "the"
-            if (j > 1 && currentPrefix.length > 1) {
+            if (j > 1 && currentPrefix.length > 1 && prevPrevRow != null) {
                 val prevLetter = currentPrefix[currentPrefix.length - 2]
                 if (target[j - 1] == prevLetter && target[j - 2] == letter) {
-                    // Approximation for adjacent swap in DP row
-                    currentCost = min(currentCost, prevRow[j - 2] + 1)
+                    currentCost = min(currentCost, prevPrevRow[j - 2] + 1)
                 }
             }
 
@@ -139,6 +140,7 @@ class AutoCorrectEngine(
                     letter = nextChar,
                     target = target,
                     prevRow = currentRow,
+                    prevPrevRow = prevRow,
                     currentPrefix = currentPrefix + nextChar,
                     maxDistance = maxDistance,
                     results = results
