@@ -22,4 +22,7 @@ jobs:
         uses: The-PR-Agent/pr-agent@v0.50.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CONFIG.MODEL: "gemini/gemini-1.5-flash"
+          CONFIG.FALLBACK_MODELS: '["gemini/gemini-1.5-flash"]'
