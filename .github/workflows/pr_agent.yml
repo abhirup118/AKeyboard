@@ -1,0 +1,25 @@
+name: PR Agent
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+
+jobs:
+  pr_agent_job:
+    runs-on: ubuntu-latest
+    name: Run PR Agent
+    if: ${{ github.event.sender.type != 'Bot' }}
+    steps:
+      - name: The PR Agent
+        id: pragent
+        uses: The-PR-Agent/pr-agent@v0.50.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
