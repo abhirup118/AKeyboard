@@ -125,6 +125,38 @@ class KeyboardViewModelTest {
         assertEquals(emptyList<String>(), viewModel.suggestions.value)
     }
 
+    @Test
+    fun `test setAutoShift capitalizes first letter and reverts to lowercase`() {
+        assertEquals(ShiftState.OFF, viewModel.shiftState.value)
+
+        // Enable auto-shift (e.g. keyboard opens or sentence starts)
+        viewModel.setAutoShift(true)
+        assertEquals(ShiftState.SHIFTED, viewModel.shiftState.value)
+
+        // First character typed is uppercase
+        val firstChar = viewModel.onCharacterPressed('w')
+        assertEquals('W', firstChar)
+        assertEquals(ShiftState.OFF, viewModel.shiftState.value)
+
+        // Subsequent characters typed are lowercase
+        val secondChar = viewModel.onCharacterPressed('o')
+        assertEquals('o', secondChar)
+        assertEquals(ShiftState.OFF, viewModel.shiftState.value)
+    }
+
+    @Test
+    fun `test setAutoShift does not override caps lock`() {
+        viewModel.onShiftPressed()
+        viewModel.onShiftPressed()
+        assertEquals(ShiftState.CAPS_LOCK, viewModel.shiftState.value)
+
+        viewModel.setAutoShift(true)
+        assertEquals(ShiftState.CAPS_LOCK, viewModel.shiftState.value)
+
+        viewModel.setAutoShift(false)
+        assertEquals(ShiftState.CAPS_LOCK, viewModel.shiftState.value)
+    }
+
     private class MockDao : LearnedWordDao {
         override suspend fun insertOrUpdate(word: LearnedWordEntity) {}
         override suspend fun getWord(word: String): LearnedWordEntity? = null

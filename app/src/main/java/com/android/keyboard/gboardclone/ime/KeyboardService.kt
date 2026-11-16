@@ -101,8 +101,9 @@ class KeyboardService : InputMethodService(), KeyboardView.KeyActionListener {
                 android.content.res.Configuration.UI_MODE_NIGHT_YES
         viewModel.setTheme(isDarkMode)
 
-        // Clear composing word on new field focus
+        // Clear composing word on new field focus and auto-capitalize first letter
         viewModel.finishCurrentWord()
+        viewModel.setAutoShift(true)
     }
 
     override fun onUpdateSelection(

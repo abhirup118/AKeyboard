@@ -191,6 +191,16 @@ class KeyboardViewModel(
     }
 
     /**
+     * Enables auto-capitalization (Shift ON) for the start of a field or sentence,
+     * unless Caps Lock is already active.
+     */
+    fun setAutoShift(enabled: Boolean = true) {
+        if (_shiftState.value != ShiftState.CAPS_LOCK) {
+            _shiftState.value = if (enabled) ShiftState.SHIFTED else ShiftState.OFF
+        }
+    }
+
+    /**
      * Triggers asynchronous suggestion query in under 20ms.
      */
     private fun refreshSuggestions(prefix: String) {
