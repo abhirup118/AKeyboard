@@ -101,9 +101,14 @@ class KeyboardService : InputMethodService(), KeyboardView.KeyActionListener {
                 android.content.res.Configuration.UI_MODE_NIGHT_YES
         viewModel.setTheme(isDarkMode)
 
-        // Clear composing word on new field focus and auto-capitalize first letter
+        // Clear composing word on new field focus
         viewModel.finishCurrentWord()
-        viewModel.setAutoShift(true)
+
+        // Respect input field type and auto-capitalize only for sentence-capitalized text fields
+        val inputType = info?.inputType ?: 0
+        val isTextField = (inputType and EditorInfo.TYPE_MASK_CLASS) == EditorInfo.TYPE_CLASS_TEXT
+        val isCapSentences = (inputType and EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES) != 0
+        viewModel.setAutoShift(isTextField && isCapSentences)
     }
 
     override fun onUpdateSelection(
